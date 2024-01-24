@@ -73,4 +73,4 @@ if __name__ == '__main__':
     requests.post(set_webhook_url, json=params)
 
     # Run the Flask app
-    application.run(port=3000)
+    application.run()
