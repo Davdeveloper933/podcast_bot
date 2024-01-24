@@ -27,11 +27,6 @@ def webhook():
             send_message(chat_id, "Hello! This is your Telegram bot. call /mp3 to receive mp3 file")
         elif '/echo' in message_text:
             send_message(chat_id, f"You said: {message_text}")
-        elif '/mp3' in message_text:
-            send_audio(chat_id, '/home/David92/mysite/static/audio/blade2.mp3')
-        elif '/youtube' in message_text:
-            youtube_url = message_text.split(' ', 1)[1]
-            convert_youtube_to_m4a(chat_id, youtube_url)
         else:
             send_message(chat_id, "I don't understand that command. Try /start or /echo.")
 
@@ -67,7 +62,7 @@ def convert_youtube_to_m4a(chat_id, youtube_url):
 
 if __name__ == '__main__':
     # Set up the webhook URL for Telegram
-    webhook_url = f'https://david92.pythonanywhere.com/{TELEGRAM_API_TOKEN}'
+    webhook_url = f'https://podcast-telegram-bot.onrender.com/{TELEGRAM_API_TOKEN}'
     set_webhook_url = BASE_URL + 'setWebhook'
     params = {'url': webhook_url}
     requests.post(set_webhook_url, json=params)
