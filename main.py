@@ -24,9 +24,9 @@ def webhook():
 
         # Handle the incoming message
         if '/start' in message_text:
-            send_message(chat_id, "Hello! This is your Telegram bot. call /mp3 to receive mp3 file")
+            send_message(chat_id, "Привет. Это вот типа бот такой. Не знаю зачем. Но просто пусть будет. Кстати ты пидр.")
         elif '/echo' in message_text:
-            send_message(chat_id, f"You said: {message_text}")
+            send_message(chat_id, f"Все равно пидр. Что бы ты ни написал - ты пидр.")
         else:
             send_message(chat_id, "I don't understand that command. Try /start or /echo.")
 
