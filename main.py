@@ -28,6 +28,8 @@ def webhook():
     # Handle the incoming message
     if '/start' in message_text:
         send_message(chat_id, "Привет. Это вот типа бот такой. Не знаю зачем. Но просто пусть будет. Кстати ты пидр.")
+    else:
+        send_message(chat_id, "I don't understand that command. Try /start or /echo.")
 
     return '', 200
 
