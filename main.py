@@ -18,13 +18,17 @@ def index():
 def webhook():
     data = request.get_json()
 
-    if 'message' in data:
-        chat_id = data['message']['chat']['id']
-        message_text = data['message']['text']
+    # Use get method to get the 'message' dictionary and provide an empty dictionary as default
+    message_data = data.get('message', {})
 
-        # Handle the incoming message
-        if '/start' in message_text:
-            send_message(chat_id, "Привет. Это вот типа бот такой. Не знаю зачем. Но просто пусть будет. Кстати ты пидр.")
+    # Extract 'chat_id' and 'text' using get method with default values
+    chat_id = message_data.get('chat', {}).get('id')
+    message_text = message_data.get('text', '')
+
+    # Handle the incoming message
+    if '/start' in message_text:
+        send_message(chat_id, "Привет. Это вот типа бот такой. Не знаю зачем. Но просто пусть будет. Кстати ты пидр.")
+
     return '', 200
 
 def send_message(chat_id, text):
