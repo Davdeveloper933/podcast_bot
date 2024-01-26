@@ -1,6 +1,11 @@
 from flask import Flask, request
 import requests
 import yt_dlp
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
 
 application = Flask(__name__)
 
