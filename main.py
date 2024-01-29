@@ -1,7 +1,7 @@
 from flask import Flask, request
 from pydub import AudioSegment
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
+from google_auth_oauthlib.flow import InstalledapplicationFlow
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 from google.auth.transport.requests import Request
@@ -11,7 +11,7 @@ import io
 import requests
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 # Замените на свои данные
 TELEGRAM_BOT_TOKEN = '6599078590:AAEN3AgDJD7KrZVcBvFwq9Av5L1pVqxa5WE'
@@ -36,7 +36,7 @@ def authenticate_google_drive():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(
+            flow = InstalledapplicationFlow.from_client_secrets_file(
                 'credentials.json', ['https://www.googleapis.com/auth/drive'])
             creds = flow.run_local_server(port=0)
 
@@ -63,7 +63,7 @@ def upload_audio_to_drive(audio_path, drive_folder_id):
     return uploaded_file['id']
 
 # Обработка входящих обновлений
-@app.route('/webhook', methods=['POST'])
+@application.route('/webhook', methods=['POST'])
 def webhook():
     data = request.get_json()
     message = data.get('message')
@@ -103,4 +103,4 @@ def send_audio_message(chat_id, drive_file_id):
 
 if __name__ == '__main__':
     set_webhook()
-    app.run(port=int(os.environ.get('PORT', 5000)), debug=True)
+    application.run(port=int(os.environ.get('PORT', 5000)), debug=True)
