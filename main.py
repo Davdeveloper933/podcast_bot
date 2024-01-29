@@ -103,4 +103,4 @@ def send_audio_message(chat_id, drive_file_id):
 
 if __name__ == '__main__':
     set_webhook()
-    application.run(port=int(os.environ.get('PORT', 5000)), debug=True)
+    application.run(port=5000), debug=True)
