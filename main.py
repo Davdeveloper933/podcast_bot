@@ -20,7 +20,7 @@ GOOGLE_DRIVE_FOLDER_ID = '1X3UDsSfzqsT44qrJe4YSAxnk36xTi4K-'
 
 # Установка вебхука
 def set_webhook():
-    url = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/setWebhook'
+    url = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/'
     params = {
         'url': f'{WEBHOOK_URL}/webhook',
     }
@@ -36,7 +36,7 @@ def authenticate_google_drive():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledapplicationFlow.from_client_secrets_file(
+            flow = InstalledAppFlow.from_client_secrets_file(
                 'credentials.json', ['https://www.googleapis.com/auth/drive'])
             creds = flow.run_local_server(port=0)
 
@@ -103,4 +103,4 @@ def send_audio_message(chat_id, drive_file_id):
 
 if __name__ == '__main__':
     set_webhook()
-    app.run(port=int(os.environ.get('PORT', 8080)), debug=True)
+    application.run(port=int(os.environ.get('PORT', 5000)), debug=True)
